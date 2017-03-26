@@ -1,0 +1,125 @@
+<div ng-show="vm.isAuthenticated" align="center">
+	<md-card md-colors="{background: 'grey-700'}" flex="80" ng-show="vm.isUserAdmin">
+		<h3> ADMIN CONTROL </h3>
+		<md-tabs md-dynamic-height md-border-bottom>
+			<md-tab>
+		      	<md-tab-label> <div style="color:white;"> Subjects </div> </md-tab-label>
+		      	<md-tab-body>
+		      		<div ng-include src="'/static/templates/subjects/view-subject.html'" ng-controller="SubjectController as ns"></div>
+		      		<md-button layout="row" layout-align="center center" class="md-raised" href="javascript:void(0)" ng-dialog="/static/templates/subjects/new-subject.html" ng-dialog-controller="SubjectController as ns"> ADD SUBJECT </md-button>
+		      	</md-tab-body>
+		    </md-tab>
+      		<md-tab>
+        		<md-tab-label> <div style="color:white;"> Batches </div> </md-tab-label>
+		      	<md-tab-body>
+		      		<div ng-include src="'/static/templates/batches/view-batch.html'" ng-controller="BatchController as nb"></div>
+		      		<md-button layout="row" layout-align="center center" class="md-raised" href="javascript:void(0)" ng-dialog="/static/templates/batches/new-batch.html" ng-dialog-controller="BatchController as nb"> ADD BATCH </md-button>
+		      	</md-tab-body>
+      		</md-tab>
+      		<md-tab>
+        		<md-tab-label> <div style="color:white;"> Batch-Subject </div> </md-tab-label>
+		      	<md-tab-body>
+		      		<div ng-include src="'/static/templates/batch-subject/view-batch-subject.html'" ng-controller="BatchSubjectController as nbs"></div>
+		      		<md-button layout="row" layout-align="center center" class="md-raised" href="javascript:void(0)" ng-dialog="/static/templates/batch-subject/new-batch-subject.html" ng-dialog-controller="BatchSubjectController as nbs"> ADD BATCH-SUBJECT </md-button>
+		      	</md-tab-body>
+      		</md-tab>
+      		<md-tab>
+        		<md-tab-label> <div style="color:white;"> Faculty-Subject </div> </md-tab-label>
+		      	<md-tab-body>
+		      		<div ng-include src="'/static/templates/faculty-subject/view-faculty-subject.html'" ng-controller="FacultySubjectController as nfs"></div>
+		      		<md-button layout="row" layout-align="center center" class="md-raised" href="javascript:void(0)" ng-dialog="/static/templates/faculty-subject/new-faculty-subject.html" ng-dialog-controller="FacultySubjectController as nfs"> ADD FACULTY-SUBJECT </md-button>
+		      	</md-tab-body>
+      		</md-tab>
+      	</md-tabs>
+	</md-card>
+
+<div ng-show="vm.isUserFaculty && !vm.isUserAdmin">
+<md-card md-colors="{background: 'grey-700'}" flex="80">
+	<md-tabs md-dynamic-height md-border-bottom>
+		<md-tab>
+	      	<md-tab-label> <div style="color:white;"> NOTES </div> </md-tab-label>
+	      	<md-tab-body>
+	      		<div ng-include src="'/static/templates/notes/view-notes.html'" ng-controller="NotesController as nn"></div>
+	      		<md-button layout="row" layout-align="center center" class="md-raised" href="javascript:void(0)" ng-dialog="/static/templates/notes/new-notes.html" ng-dialog-controller="NotesController as nn" ng-dialog-close-by-document="false" ng-dialog-show-close="false"> ADD NOTES </md-button>
+	      	</md-tab-body>
+	    </md-tab>
+	    <md-tab>
+	      	<md-tab-label> <div style="color:white;"> DOWNLOADS REPORT </div> </md-tab-label>
+	      	<md-tab-body>
+	      		<div ng-include src="'/static/templates/downloads/view-downloads-report.html'" ng-controller="DownloadsController as nd"></div>
+	      	</md-tab-body>
+	    </md-tab>
+  	</md-tabs>
+</md-card>
+</div>
+
+<div ng-show="!vm.isUserFaculty && !vm.isUserAdmin">
+	<md-card md-colors="{background: 'grey-700'}" flex="80">
+		<md-tabs md-dynamic-height md-border-bottom>
+			<md-tab>
+		      	<md-tab-label> <div style="color:white;"> NOTES </div> </md-tab-label>
+		      	<md-tab-body>
+		      		<div ng-include src="'/static/templates/notes/view-notes.html'" ng-controller="NotesController as nn"></div>
+		      	</md-tab-body>
+		    </md-tab>
+      	</md-tabs>
+    </md-card>
+	</div>
+</div>
+
+
+<!-- LOGIN VIEW -->
+
+<div ng-show="!vm.isAuthenticated" align="center" ng-controller="LoginController as vm">
+	<br><br><br>
+	<md-card md-colors="{background: 'grey-700'}" flex="80">
+	<br><br>
+	<div class="alignProb" layout="row" layout-align="center center" layout-xs="column">
+		<div flex="10"></div>
+		<div flex="40" flex-xs="60" align="left">
+			<md-icon class="mdi mdi-note-multiple-outline mdi-set mdi-48px mdi-light"></md-icon>
+			<h1 style="color: white"> Built For Students </h1>
+			<span style="font-style: italic;"> <p>SLOTGO is a learning platform inspired by the way you learn. </p> 
+			<ul> <li> Faculty Uploads Notes </li> <li> Students Download them. </li> </ul> </span>
+		</div>
+		<div flex></div>
+		<div flex="35" flex-xs="50">
+			<md-card align="left" layout-xs="column">
+			<md-card-content>
+			<form name="loginForm" role="form" ng-submit="vm.login()">
+			<md-card-title>
+          		<md-card-title-text>
+            		<span align="center" class="md-headline" style="color: #636363;">Login</span>
+          		</md-card-title-text>
+        	</md-card-title>
+			
+		  	<md-input-container class="md-block">
+		    	<label>UserName</label>
+		    	<md-icon class="mdi mdi-account-outline mdi-set mdi-24px"></md-icon>
+		    	<input type="text" name="username" ng-model="vm.username" required>
+		    	<div ng-messages="loginForm.username.$error">
+		      		<div ng-message="required">This is required.</div>
+		    	</div>
+		  	</md-input-container>
+
+		    <md-input-container class="md-block">
+				<label>Password</label>
+				<md-icon class="mdi mdi-lock-outline mdi-set mdi-24px"></md-icon>
+			    <input type="password" name="password" ng-model="vm.password" required>
+			    <div ng-messages="loginForm.password.$error" role="alert">
+			    	<div ng-message="required">This is required.</div>
+			    </div>
+		    </md-input-container>
+		    <md-card-actions layout="row" layout-align="space-around center">
+	          <md-button href="/register/" class="md-raised" md-colors="{background: 'grey-700'}">Register</md-button>
+	          <md-button type="submit" class="md-raised" md-colors="{background: 'grey-700'}">Login</md-button>
+	        </md-card-actions>
+			</form>
+			</md-card-content>
+			</md-card>
+		</div>
+		<div flex=5></div>
+	</div>
+	<br><br>
+	</md-card>
+</div>

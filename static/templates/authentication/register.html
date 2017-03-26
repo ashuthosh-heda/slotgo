@@ -1,0 +1,188 @@
+<div align="center">
+<md-card md-colors="{background: 'grey-700'}" flex="80">
+<div class="alignProb" align="center">
+<h2 align="center">Register</h2>
+<md-card flex="80">
+<md-card-content>
+<form name="registerForm" ng-submit="vm.register()">
+  <div layout="row" layout-align="center center" layout-xs="column">
+  <div flex="10"></div>
+  <div flex="35" flex-xs="50">
+  <md-input-container class="md-block">
+    <label>UserName</label>
+    <input type="text" required name="username" ng-model="vm.username" minlength="6" ng-pattern="/^[a-zA-Z0-9]*$/">
+    <div ng-messages="registerForm.username.$error" role="alert">
+      <div ng-message="minlength"> Minimum Characters should be 6 </div>
+      <div ng-message="required">This is required.</div>
+      <div ng-message="pattern">Username must only contains Letters and Numbers.</div>
+    </div>
+  </md-input-container>
+  </div>
+  <div flex="10"></div>
+  <div flex="35" flex-xs="50">
+  <md-input-container class="md-block">
+    <label>Password</label>
+    <input type="password" required name="password" ng-model="vm.password" ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/">
+    <div ng-messages="registerForm.password.$error" role="alert">
+      <div ng-message="required">This is required.</div>
+      <div ng-message="pattern">Password should be atleast 8 characters long
+                    and should contain one number,one character and one special
+                    character</div>
+    </div>
+  </md-input-container>
+  </div>
+  <div flex="10"></div>
+  </div>
+
+  <div layout="row" layout-xs="column" layout-align="center center">
+  <div flex="10"></div>
+  <div flex="35" flex-xs="50">
+  <md-input-container class="md-block">
+    <label>First Name</label>
+    <input type="text" required name="first_name" ng-model="vm.first_name" ng-pattern="/^[a-zA-Z\s]*$/">
+    <div ng-messages="registerForm.first_name.$error" role="alert">
+      <div ng-message="required">This is required.</div>
+      <div ng-message="pattern">Enter a Valid Name.</div>
+    </div>
+  </md-input-container>
+  </div>
+  <div flex="10"></div>
+  <div flex="35" flex-xs="50">
+  <md-input-container class="md-block">
+    <label>Last Name</label>
+    <input type="text" required name="last_name" ng-model="vm.last_name" ng-pattern="/^[a-zA-Z\s]*$/">
+    <div ng-messages="registerForm.last_name.$error" role="alert">
+      <div ng-message="required">This is required.</div>
+      <div ng-message="pattern">Enter a Valid Name.</div>
+    </div>
+  </md-input-container>
+  </div>
+  <div flex="10"></div>
+  </div>
+
+  <div layout="row" layout-xs="column" layout-align="center center">
+  <div flex="10"></div>
+  <div flex="35" flex-xs="50">
+  <md-input-container class="md-block">
+    <label>Email</label>
+    <input type="email" required name="email" ng-model="vm.email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/">
+    <div ng-messages="registerForm.email.$error" role="alert">
+      <div ng-message="required">This is required.</div>
+      <div ng-message="email">Enter a proper email.</div>
+      <div ng-message="pattern">Enter a Valid Email Address.</div>
+    </div>
+  </md-input-container>
+  </div>
+  <div flex="10"></div>
+  <div flex="35" flex-xs="50">
+  <md-input-container class="md-block">
+    <label>Contact Number</label>
+    <input type="number" ng-model="vm.contact_number" required name="contact_number" ng-maxlength="10" ng-minlength="10">
+    <div ng-messages="registerForm.contact_number.$error" role="alert">
+      <div ng-message="required">This is required.</div>
+      <div ng-message="maxlength">Enter a Valid 10 Digit Phone Number</div>
+      <div ng-message="minlength">Enter a Valid 10 Digit Phone Number</div>
+    </div>
+  </md-input-container>
+  </div>
+  <div flex="10"></div>
+  </div>
+
+  <div layout="row" layout-xs="column" layout-align="center center">
+  <div flex="10"></div>
+  <div flex="35" flex-xs="50">
+  <md-radio-group ng-model="vm.gender">
+    <div align="left" layout="row" layout-xs="column" layout-align="center center"> 
+    <div flex style="font-size: 18px"> Gender: </div>
+    <md-radio-button flex value="male">Male</md-radio-button>
+    <md-radio-button flex value="female">Female</md-radio-button>
+    </div>
+  </md-radio-group>
+  </div>
+  <div flex="10"></div>
+  <div flex="35" flex-xs="50">
+    <md-radio-group ng-model="vm.is_faculty" required>
+      <div align="left" layout="row" layout-xs="column" layout-align="center center"> <div flex style="font-size: 18px"> Is Faculty: </div>
+      <md-radio-button flex value="true">Yes</md-radio-button>
+      <md-radio-button flex value="false">No</md-radio-button>
+      </div>
+    </md-radio-group>
+  </div>
+  <div flex="10"></div>
+  </div>
+
+  <div ng-show="vm.is_faculty == 'true'">
+    <div layout="row" layout-xs="column" layout-align="center center">
+    <div flex></div>
+    <div flex="35" flex-xs="50">
+    <md-input-container class="md-block">
+      <md-select ng-model="vm.post" name="designation" placeholder="Designation" class="md-no-underline" required>
+        <md-option value="Professor">Professor</md-option>
+        <md-option value="Associate Prof">Associate Prof</md-option>
+        <md-option value="Sr. Asst. Prof">Sr. Asst. Prof</md-option>
+        <md-option value="Asst. Prof">Asst. Prof</md-option>
+      </md-select>
+    </md-input-container>
+    </div>
+    <div flex></div>
+    </div>
+  </div>
+
+  <div ng-show="vm.is_faculty == 'false'">
+    <div layout="row" layout-xs="column" layout-align="center center">
+    <div flex="10"></div>
+    <div flex="35" flex-xs="50">
+    <md-input-container class="md-block">
+      <md-select ng-model="vm.batch_id" placeholder="Batch--Sem" class="md-no-underline" required>
+        <md-option ng-repeat="batch in vm.batches" ng-value="batch.id">{{batch.batch}}--{{batch.sem_number}}</md-option>
+      </md-select>
+    </md-input-container>
+    </div>
+    <div flex="10"></div>
+    <div flex="35" flex-xs="50">
+    <md-input-container class="md-block">
+      <md-select ng-model="vm.relation" name="relation" placeholder="Relative" class="md-no-underline" required>
+        <md-option value="Father" selected>Father</md-option>
+        <md-option value="Mother">Mother</md-option>
+        <md-option value="Guardian">Guardian</md-option>
+      </md-select>
+    </md-input-container>
+    </div>
+    <div flex="10"></div>
+    </div>
+
+    <div layout="row" layout-xs="column" layout-align="center center">
+    <div flex="10"></div>
+    <div flex="35" flex-xs="50">
+    <md-input-container class="md-block">
+      <label>{{ vm.relation }} Name</label>
+      <input type="text" ng-model="vm.relative_name" name="relative_name" ng-pattern="/^[a-zA-Z\s]*$/" required>
+      <div ng-messages="registerForm.relative_name.$error" role="alert">
+        <div ng-message="required">This is required.</div>
+        <div ng-message="pattern">Enter a Valid Name.</div>
+      </div>
+    </md-input-container>
+    </div>
+    <div flex="10"></div>
+    <div flex="35" flex-xs="50">
+    <md-input-container class="md-block">
+      <label>{{ vm.relation }} Contact Number</label>
+      <input type="number" ng-model="vm.relative_phone_number" required name="relative_phone_number" ng-maxlength="10" ng-minlength="10">
+      <div ng-messages="registerForm.relative_phone_number.$error" role="alert">
+        <div ng-message="required">This is required.</div>
+        <div ng-message="maxlength">Enter a Valid 10 Digit Phone Number</div>
+        <div ng-message="minlength">Enter a Valid 10 Digit Phone Number</div>
+      </div>
+    </md-input-container>
+    </div>
+    <div flex="10"></div>
+    </div>
+  </div>
+  <md-button class="md-raised" md-colors="{background: 'grey-700'}" type="submit">Register</md-button>
+</form>
+</md-card-content>
+</md-card>
+<br><br>
+</div>
+</md-card>
+</div>

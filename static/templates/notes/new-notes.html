@@ -1,0 +1,19 @@
+<form name="NotesForm" ng-submit="nn.submit()">
+  <md-input-container class="md-block">
+    <label>Notes Title</label>
+    <input type="text" ng-disabled="nn.uploadComplete" required name="notes_title" ng-model="nn.title">
+    <div ng-messages="NotesForm.notes_title.$error" role="alert">
+      <div ng-message="required">This is required.</div>
+    </div>
+  </md-input-container>
+  <md-input-container class="md-block">
+    <md-select ng-disabled="nn.uploadComplete" ng-model="nn.subject_id" placeholder="Subject" class="md-no-underline" required>
+      <md-option ng-repeat="subject in nn.facultysubjects" ng-value="subject.subject_id">{{subject.subject_name}}</md-option>
+    </md-select>
+  </md-input-container>
+  <div align="center">
+    <input type="file" file-model="nn.file" class="md-raised" ng-disabled="nn.uploadComplete" required>
+    <md-progress-circular md-mode="indeterminate" ng-show="nn.uploadComplete"></md-progress-circular>
+    <md-button class="md-raised" type="submit" ng-disabled="nn.uploadComplete">ADD</md-button>
+  </div>
+</form>

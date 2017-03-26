@@ -1,0 +1,14 @@
+<form name="faculty-subjectForm" ng-submit="nfs.submit()">
+  <md-input-container class="md-block">
+    <md-select ng-model="nfs.faculty_id" placeholder="Faculty" class="md-no-underline">
+      <md-option ng-repeat="faculty in nfs.faculties" ng-value="faculty.id">{{faculty.first_name}}</md-option>
+    </md-select>
+  </md-input-container>
+  <md-input-container class="md-block">
+    <md-select ng-model="nfs.subject_id" placeholder="Subject" class="md-no-underline">
+      <md-option ng-repeat="subject in nfs.subjects" ng-value="subject.id">{{subject.abbreviation}}</md-option>
+    </md-select>
+  </md-input-container>
+
+  <md-button class="md-raised" type="submit">ADD</md-button>
+</form>

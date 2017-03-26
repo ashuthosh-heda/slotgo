@@ -1,0 +1,14 @@
+<div ng-show="nd.showList">
+  <section ng-repeat="report in nd.report | orderBy: 'notes_name'">
+    <md-subheader class="md-accent">{{report.notes_name}}</md-subheader>
+    <md-list align="left">
+      <md-list-item class="md-3-line" ng-repeat="user in report.users | orderBy : 'first_name'">
+          <div class="md-list-item-text">
+            <h3 style="color:white;">{{user.username}}</h3>
+            <h4>{{user.first_name}} {{user.last_name}}</h4>
+          </div>
+          <md-divider ng-if="!$last"></md-divider>
+      </md-list-item>
+    </md-list>
+  </section>
+</div>

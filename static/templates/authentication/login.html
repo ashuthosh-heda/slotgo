@@ -1,0 +1,28 @@
+<div align="center" ng-show="!vm.isAuthenticated">
+  <hgroup>
+    <h1 style="color: #636363;">Login</h1>
+  </hgroup>
+  <md-whiteframe class="md-whiteframe-4dp" flex-gt-md="35" layout layout-align="center center">
+    <form role="form" ng-submit="vm.login()">
+      <md-input-container class="md-block">
+        <label>UserName</label>
+        <input type="text" required name="username" ng-model="vm.username">
+        <div ng-messages="registerForm.username.$error" role="alert">
+          <div ng-message="required">This is required.</div>
+        </div>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>Password</label>
+        <input type="password" required name="password" ng-model="vm.password">
+        <div ng-messages="registerForm.password.$error" role="alert">
+          <div ng-message="required">This is required.</div>
+        </div>
+      </md-input-container>
+
+      <div>
+        <md-button type="submit" class="md-raised">Submit</button>
+      </div>
+    </form>
+  </md-whiteframe>
+</div>

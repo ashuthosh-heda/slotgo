@@ -1,0 +1,5 @@
+<md-list-item ng-repeat="batchsubject in batchsubject | orderBy : 'subject_name'">
+	<p> {{ batchsubject.subject_name }} --- {{ batchsubject.batch_name }} </p>
+	<md-button class="md-raised" ng-click="nbs.delete(batchsubject)">Delete</md-button>
+    <md-divider ng-if="!$last"></md-divider>
+</md-list-item>

@@ -1,0 +1,169 @@
+<div align="center">
+<md-card md-colors="{background: 'grey-700'}" flex="80">
+<div class="alignProb" align="center">
+<h2 align="center">Settings</h2>
+<md-card flex="80">
+<md-card-content>
+<form name="updateForm" ng-submit="vm.update()">
+  <div layout="row" layout-align="center center" layout-xs="column">
+  <md-input-container class="md-block">
+    <label align="left">UserName</label>
+    <input type="text" required name="username" ng-model="vm.profile.username" minlength="6" ng-pattern="/^[a-zA-Z0-9]*$/">
+    <div ng-messages="updateForm.username.$error" role="alert">
+      <div ng-message="minlength"> Minimum Characters should be 6 </div>
+      <div ng-message="required">This is required.</div>
+      <div ng-message="pattern">Username must only contains Letters and Numbers.</div>
+    </div>
+  </md-input-container>
+  </div>
+
+  <div layout="row" layout-xs="column" layout-align="center center">
+  <div flex="10"></div>
+  <div flex="35" flex-xs="50">
+  <md-input-container class="md-block">
+    <label>First Name</label>
+    <input type="text" required name="first_name" ng-model="vm.profile.first_name" ng-pattern="/^[a-zA-Z\s]*$/">
+    <div ng-messages="updateForm.first_name.$error" role="alert">
+      <div ng-message="required">This is required.</div>
+      <div ng-message="pattern">Enter a Valid Name.</div>
+    </div>
+  </md-input-container>
+  </div>
+  <div flex="10"></div>
+  <div flex="35" flex-xs="50">
+  <md-input-container class="md-block">
+    <label>Last Name</label>
+    <input type="text" required name="last_name" ng-model="vm.profile.last_name" ng-pattern="/^[a-zA-Z\s]*$/">
+    <div ng-messages="updateForm.last_name.$error" role="alert">
+      <div ng-message="required">This is required.</div>
+      <div ng-message="pattern">Enter a Valid Name.</div>
+    </div>
+  </md-input-container>
+  </div>
+  <div flex="10"></div>
+  </div>
+
+  <div layout="row" layout-xs="column" layout-align="center center">
+  <div flex="10"></div>
+  <div flex="35" flex-xs="50">
+  <md-input-container class="md-block">
+    <label>Email</label>
+    <input type="email" required name="email" ng-model="vm.profile.email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/">
+    <div ng-messages="updateForm.email.$error" role="alert">
+      <div ng-message="required">This is required.</div>
+      <div ng-message="email">Enter a proper email.</div>
+      <div ng-message="pattern">Enter a Valid Email Address.</div>
+    </div>
+  </md-input-container>
+  </div>
+  <div flex="10"></div>
+  <div flex="35" flex-xs="50">
+  <md-input-container class="md-block">
+    <label>Contact Number</label>
+    <input type="number" required name="contact_number" ng-model="vm.profile.contact_number" ng-maxlength="10" ng-minlength="10">
+    <div ng-messages="updateForm.contact_number.$error" role="alert">
+      <div ng-message="required">This is required.</div>
+      <div ng-message="maxlength">Enter a Valid 10 Digit Phone Number</div>
+      <div ng-message="minlength">Enter a Valid 10 Digit Phone Number</div>
+    </div>
+  </md-input-container>
+  </div>
+  <div flex="10"></div>
+  </div>
+
+  <div layout="row" layout-xs="column" layout-align="center center" ng-show="vm.profile.is_faculty">
+  <div flex="10"></div>
+  <div flex="35" flex-xs="50">
+  <md-radio-group ng-model="vm.profile.gender">
+    <div align="left" layout="row" layout-xs="column" layout-align="center center"> 
+    <div flex style="font-size: 18px"> Gender: </div>
+    <md-radio-button flex value="male" class="md-primary">Male</md-radio-button>
+    <md-radio-button flex value="female">Female</md-radio-button>
+    </div>
+  </md-radio-group>
+  </div>
+  <div flex="10"></div>
+  <div flex="35" flex-xs="50">
+    <md-input-container class="md-block">
+      <md-select ng-model="vm.profile_extra_info.post" name="designation" placeholder="Designation" class="md-no-underline">
+        <md-option value="Professor">Professor</md-option>
+        <md-option value="Associate Prof">Associate Prof</md-option>
+        <md-option value="Sr. Asst. Prof">Sr. Asst. Prof</md-option>
+        <md-option value="Asst. Prof">Asst. Prof</md-option>
+      </md-select>
+    </md-input-container>
+    </div>
+  <div flex="10"></div>
+  </div>
+
+  <div ng-show="!vm.profile.is_faculty">
+    <div layout="row" layout-xs="column" layout-align="center center">
+      <md-radio-group ng-model="vm.profile.gender">
+      <div align="left" layout="row" layout-xs="column" layout-align="center center"> 
+      <div flex style="font-size: 18px"> Gender: </div>
+      <md-radio-button flex value="male" class="md-primary">Male</md-radio-button>
+      <md-radio-button flex value="female">Female</md-radio-button>
+      </div>
+      </md-radio-group>
+    </div>
+  
+    <div ng-show="!vm.isUserAdmin">
+    <div layout="row" layout-xs="column" layout-align="center center">
+    <div flex="10"></div>
+    <div flex="35" flex-xs="50">
+    <md-input-container class="md-block">
+      <md-select ng-model="vm.profile_extra_info.batch_id" placeholder="Batch--Sem" class="md-no-underline">
+        <md-option ng-repeat="batch in vm.batches" ng-value="batch.id">{{batch.batch}}--{{batch.sem_number}}</md-option>
+      </md-select>
+    </md-input-container>
+    </div>
+    <div flex="10"></div>
+    <div flex="35" flex-xs="50">
+    <md-input-container class="md-block">
+      <md-select ng-model="vm.profile_extra_info.relation" name="relation" placeholder="Relative" class="md-no-underline">
+        <md-option value="Father">Father</md-option>
+        <md-option value="Mother">Mother</md-option>
+        <md-option value="Guardian">Guardian</md-option>
+      </md-select>
+    </md-input-container>
+    </div>
+    <div flex="10"></div>
+    </div>
+
+    <div layout="row" layout-xs="column" layout-align="center center">
+    <div flex="10"></div>
+    <div flex="35" flex-xs="50">
+    <md-input-container class="md-block">
+      <label>{{ vm.profile_extra_info.relation }} Name</label>
+      <input type="text" ng-model="vm.profile_extra_info.relative_name" name="relative_name" ng-pattern="/^[a-zA-Z\s]*$/" required>
+      <div ng-messages="updateForm.relative_name.$error" role="alert">
+        <div ng-message="required">This is required.</div>
+        <div ng-message="pattern">Enter a Valid Name.</div>
+      </div>
+    </md-input-container>
+    </div>
+    <div flex="10"></div>
+    <div flex="35" flex-xs="50">
+    <md-input-container class="md-block">
+      <label>{{ vm.profile_extra_info.relation }} Contact Number</label>
+      <input type="number" ng-model="vm.profile_extra_info.relative_phone_number" required name="relative_phone_number" ng-maxlength="10" ng-minlength="10">
+      <div ng-messages="updateForm.relative_phone_number.$error" role="alert">
+        <div ng-message="required">This is required.</div>
+        <div ng-message="maxlength">Enter a Valid 10 Digit Phone Number</div>
+        <div ng-message="minlength">Enter a Valid 10 Digit Phone Number</div>
+      </div>
+    </md-input-container>
+    </div>
+    <div flex="10"></div>
+    </div>
+    </div>
+  </div>
+  <md-button class="md-raised" md-colors="{background: 'grey-700'}" type="submit">Update</md-button>
+  <md-button class="md-raised" md-colors="{background: 'grey-700'}" ng-click="vm.destroy()">Delete</md-button>
+</form>
+</md-card-content>
+</md-card>
+<br><br>
+</div>
+</md-card>
+</div>

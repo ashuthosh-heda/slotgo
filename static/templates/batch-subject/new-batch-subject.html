@@ -1,0 +1,14 @@
+<form name="batch-subjectForm" ng-submit="nbs.submit()">
+  <md-input-container class="md-block">
+    <md-select ng-model="nbs.batch_id" placeholder="Batch-Sem" class="md-no-underline">
+      <md-option ng-repeat="batch in nbs.batches" ng-value="batch.id">{{batch.batch}}-{{batch.sem_number}}</md-option>
+    </md-select>
+  </md-input-container>
+  <md-input-container class="md-block">
+    <md-select ng-model="nbs.subject_id" placeholder="Subject" class="md-no-underline">
+      <md-option ng-repeat="subject in nbs.subjects" ng-value="subject.id">{{subject.abbreviation}}</md-option>
+    </md-select>
+  </md-input-container>
+
+  <md-button class="md-raised" type="submit">ADD</md-button>
+</form>

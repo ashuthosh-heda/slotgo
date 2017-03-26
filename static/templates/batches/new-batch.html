@@ -1,0 +1,19 @@
+<form name="batchForm" ng-submit="nb.submit()">
+  <md-input-container class="md-block">
+    <label>Batch Number</label>
+    <input type="number" required name="batch_number" ng-model="nb.batch">
+    <div ng-messages="batchForm.batch_number.$error" role="alert">
+      <div ng-message="required">This is required.</div>
+    </div>
+  </md-input-container>
+
+  <md-input-container class="md-block">
+    <label>Sem Number</label>
+    <input type="number" required name="sem_number" ng-model="nb.sem_number">
+    <div ng-messages="batchForm.sem_number.$error" role="alert">
+      <div ng-message="required">This is required.</div>
+    </div>
+  </md-input-container>
+  
+  <md-button class="md-raised" type="submit">ADD</md-button>
+</form>

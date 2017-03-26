@@ -1,0 +1,17 @@
+<md-toolbar md-colors="{background: 'grey-700'}" ng-if="true" ng-controller="NavbarController as vm">
+  <div align="center" class="md-toolbar-tools">
+    <h2 flex md-truncate><a style="font-style: bold; font-style: console" href="/">Smart Learning On The Go</a></h2>
+    {% if user.is_authenticated %}
+    <div layout-xs="row">
+        {% if user.is_superuser %}
+            <md-button class="md-raised" href="/" flex>{{ user.username }} - admin</md-button>
+        {% else %}
+            <md-button class="md-raised" href="/{{ user.username }}/" flex>{{ user.username }}</md-button>
+        {% endif %}
+        <md-button class="md-raised" href="/" ng-click="vm.logout()" flex>Logout</md-button>
+    </div>
+    {% endif %}
+  </div>
+</md-toolbar>
+
+
